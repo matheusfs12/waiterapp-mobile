@@ -1,19 +1,23 @@
-import { Category, Icon } from './styles';
+import { CategoryContainer, Icon } from './styles';
 
+import { Category } from '../../types/Category';
 import { FlatList } from 'react-native';
 import { Text } from '../Text';
-import { categories } from '../../mocks/categories';
 import { useState } from 'react';
 
-export function Categories() {
-    const [selectedCategory, setSelectedCategory] = useState<string>('');
+interface CategoryProps {
+    categories: Category[];
+    onSelectCategory: (categoryId: string) => Promise<void>;
+}
+
+export function Categories({ categories, onSelectCategory }: CategoryProps) {
+    const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
 
     function handleSelectCategory(categoryId: string) {
-        if (categoryId === selectedCategory) {
-            return setSelectedCategory('');
-        }
+        const category = selectedCategoryId === categoryId ? '' : categoryId;
 
-        setSelectedCategory(categoryId);
+        onSelectCategory(category);
+        setSelectedCategoryId(category);
     }
 
     return (
@@ -23,17 +27,17 @@ export function Categories() {
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{ paddingHorizontal: 24, gap: 24 }}
             keyExtractor={category => category._id}
-            renderItem={({ item: category }) => {
-                const isSelected = category._id === selectedCategory;
+            renderItem={({ item }) => {
+                const isSelected = item._id === selectedCategoryId;
 
                 return (
-                    <Category onPress={() => handleSelectCategory(category._id)}>
+                    <CategoryContainer onPress={() => handleSelectCategory(item._id)}>
                         <Icon>
-                            <Text opacity={isSelected ? 1 : 0.5}>{category.icon}</Text>
+                            <Text opacity={isSelected ? 1 : 0.5}>{item.icon}</Text>
                         </Icon>
 
-                        <Text opacity={isSelected ? 1 : 0.5} size={14} weight="600">{category.name}</Text>
-                    </Category>
+                        <Text opacity={isSelected ? 1 : 0.5} size={14} weight="600">{item.name}</Text>
+                    </CategoryContainer>
                 );
             }}
         />

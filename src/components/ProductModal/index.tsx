@@ -12,13 +12,15 @@ interface ProductModalProps {
     visible: boolean;
     onClose: () => void;
     product: Product | null;
+    onAddToCart: (product: Product) => void;
 }
 
-export function ProductModal({ visible, onClose, product }: ProductModalProps) {
+export function ProductModal({ visible, onClose, product, onAddToCart }: ProductModalProps) {
     if (!product) return null;
 
     function handleAdicionar() {
-        console.log('Adicionar');
+        onAddToCart(product!);
+        onClose();
     }
 
     return (

@@ -1,7 +1,7 @@
 export const products = [
     {
         _id: '6372e040f52e37ef85fe2c5e',
-        name: 'Pizza quatro queijos com nome muito grande como fica oidhsoidshoi hdsioh doish ido',
+        name: 'Pizza quatro queijos',
         description: 'Deliciosa pizza quatro queijos com borda simples',
         imagePath: '1673490032707-quatro-queijos.png',
         price: 40,
@@ -30,6 +30,30 @@ export const products = [
     },
     {
         _id: '6372e276a381106c0f854cb3',
+        name: 'Coca cola',
+        description: 'Coca cola lata geladinha topzera',
+        imagePath: '1673491001981-coca-cola.png',
+        price: 7,
+        ingredients: [],
+    },
+    {
+        _id: '433423423423',
+        name: 'Coca cola',
+        description: 'Coca cola lata geladinha topzera',
+        imagePath: '1673491001981-coca-cola.png',
+        price: 7,
+        ingredients: [],
+    },
+    {
+        _id: '23423423423423432423',
+        name: 'Coca cola',
+        description: 'Coca cola lata geladinha topzera',
+        imagePath: '1673491001981-coca-cola.png',
+        price: 7,
+        ingredients: [],
+    },
+    {
+        _id: '423423423423423',
         name: 'Coca cola',
         description: 'Coca cola lata geladinha topzera',
         imagePath: '1673491001981-coca-cola.png',

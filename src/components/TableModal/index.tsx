@@ -1,11 +1,11 @@
 import { Form, Header, Input, ModalBody, Overlay } from './styles';
-import { Modal, TouchableOpacity } from 'react-native';
+import { Modal, TextInput, TouchableOpacity } from 'react-native';
+import { useRef, useState } from 'react';
 
 import { Button } from '../Button';
 import { Close } from '../Icons/Close';
 import { Text } from '../Text';
 import { isAndroid } from '../../utils/isAndroid';
-import { useState } from 'react';
 
 interface TableModalProps {
     visible: boolean;
@@ -15,6 +15,7 @@ interface TableModalProps {
 
 export function TableModal({ visible, onClose, onSave }: TableModalProps) {
     const [table, setTable] = useState('');
+    const inputRef = useRef<TextInput | null>(null);
 
     function handleSave() {
         onSave(table);
@@ -26,6 +27,7 @@ export function TableModal({ visible, onClose, onSave }: TableModalProps) {
         <Modal
             transparent
             visible={visible}
+            onShow={() => { inputRef.current?.focus(); }}
             animationType="fade"
         >
             <Overlay behavior={isAndroid ? 'height' : 'padding'}>
@@ -38,10 +40,12 @@ export function TableModal({ visible, onClose, onSave }: TableModalProps) {
                     </Header>
                     <Form>
                         <Input
+                            ref={(input) => { inputRef.current = input; }}
                             placeholder="Número da mesa"
                             placeholderTextColor="#666"
                             keyboardType="number-pad"
                             onChangeText={setTable}
+                            onSubmitEditing={handleSave}
                         />
 
                         <Button disabled={table.length === 0} onPress={handleSave}>

@@ -7,10 +7,14 @@ import { ProductModal } from '../ProductModal';
 import { Text } from '../Text';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { getImageUri } from '../../utils/getImageUri';
-import { products } from '../../mocks/products';
 import { useState } from 'react';
 
-export function Menu() {
+interface MenuProps {
+    onAddToCart: (product: Product) => void;
+    products: Product[];
+}
+
+export function Menu({ onAddToCart, products }: MenuProps) {
     const [isProductModalVisible, setIsProductModalVisible] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
@@ -25,6 +29,7 @@ export function Menu() {
                 visible={isProductModalVisible}
                 onClose={() => setIsProductModalVisible(false)}
                 product={selectedProduct}
+                onAddToCart={onAddToCart}
             />
 
             <FlatList
@@ -47,7 +52,7 @@ export function Menu() {
                             <Text weight="600" size={14}>{formatCurrency(product.price)}</Text>
                         </ProductDetails>
 
-                        <AddToCartButton>
+                        <AddToCartButton onPress={() => onAddToCart(product)} >
                             <PlusCircle />
                         </AddToCartButton>
                     </ProductContainer>

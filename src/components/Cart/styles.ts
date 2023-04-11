@@ -1,5 +1,9 @@
 import styled from 'styled-components/native';
 
+export const Container = styled.View`
+    gap: 20px;
+`;
+
 export const Item = styled.View`
     flex-direction: row;
     padding: 8px 0px;
@@ -34,3 +38,15 @@ export const QuantityContainer = styled.View`
 export const ProductDetails = styled.View`
     flex: 1;
 `;
+
+export const Summary = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+export const TotalContainer = styled.View`
+    flex: 1;
+`;
+
+export const EmptyCartContainer = styled.View``;

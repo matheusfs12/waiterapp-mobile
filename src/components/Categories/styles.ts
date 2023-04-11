@@ -1,7 +1,7 @@
 import { isAndroid } from '../../utils/isAndroid';
 import styled from 'styled-components/native';
 
-export const Category = styled.TouchableOpacity`
+export const CategoryContainer = styled.TouchableOpacity`
     align-items: center;
 `;
 
